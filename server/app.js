@@ -1,16 +1,21 @@
-import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
+import express from "express"; // we are importing express package
+import dotenv from "dotenv"; // we are importing dotenv 
+dotenv.config(); // for using values from .env 
 
-const app = express();
+const app = express(); // create a variable app and store complete express function
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT; // this we are getting from a file name .env
 
 // Importing User Apis
 
-import "./utils/dbConnect.js"
+import "./utils/dbConnect.js" // (DB Connection Line)
+
+
+// ALL IMPORT API's
 
 import userRouter from "./controllers/user/index.js";
+
+app.use(express.json())  // to accept data from postman
 
 app.get("/", (req, res) => {
   try {
@@ -22,7 +27,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
-// http://localhost:5004/user/getallusers
+
+
+// http://localhost:5004/user/getallusers 
+// http://localhost:5004/user/add
+
 app.listen(PORT, () => {
   console.log(`Server is Running at http://localhost:${PORT}`);
 });

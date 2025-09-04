@@ -11,23 +11,26 @@ const PORT = process.env.PORT; // this we are getting from a file name .env
 import "./utils/dbConnect.js" // (DB Connection Line)
 
 
+
+
 // ALL IMPORT API's
 
 import userRouter from "./controllers/user/index.js";
+// import adminRouter from "./controllers/admin/index.js"
 
 app.use(express.json())  // to accept data from postman
 
 app.get("/", (req, res) => {
   try {
-    re.status(200).json({ msg: "Hello Server" });
+    res.status(200).json({ msg: "Hello Server" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: error });
   }
 });
 
-app.use("/user", userRouter);
-
+app.use("/user",userRouter)
+// app.use("/admin",adminRouter)
 
 // http://localhost:5004/user/getallusers 
 // http://localhost:5004/user/add
